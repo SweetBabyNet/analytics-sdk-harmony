@@ -1,0 +1,7 @@
+.DS_Store
+.idea/
+*.iml
+oh_modules/
+build/
+/default/
+/local/

@@ -1,0 +1,9 @@
+{
+  "name": "@analytics/sdk",
+  "version": "1.0.0",
+  "description": "analytics 埋点 HarmonyOS SDK（零三方依赖 HAR）",
+  "main": "Index.ets",
+  "author": "analytics",
+  "license": "MIT",
+  "dependencies": {}
+}

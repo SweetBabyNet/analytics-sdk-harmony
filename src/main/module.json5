@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "sdk",
+    "type": "har",
+    "deviceTypes": [
+      "phone",
+      "tablet"
+    ],
+    "description": "analytics 埋点 SDK"
+  }
+}
