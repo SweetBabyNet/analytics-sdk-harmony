@@ -11,26 +11,30 @@ ArkTS 实现的 HAR 静态共享包，零三方依赖。行为契约见 `analyti
 
 ## 集成步骤
 
-### 方式一：ohpm 从 GitHub 拉取（推荐）
+### 方式一：GitHub Release 下载 HAR（推荐）
 
-本 SDK 托管在 GitHub，ohpm 支持以 git 地址作为依赖源。在宿主模块（entry）目录执行：
+> ohpm 不支持 git URL 依赖（只支持中心仓/私仓和 file: 本地路径），因此通过
+> GitHub Release 分发 HAR 包。升级版本 = 下载新 HAR 替换后重新 ohpm install。
 
-```bash
-ohpm install https://github.com/SweetBabyNet/analytics-sdk-harmony.git
-```
+1. 从 [Releases](https://github.com/SweetBabyNet/analytics-sdk-harmony/releases) 下载所需版本的 `.har`
+   （如 `analytics-sdk-harmony-v1.0.1.har`），放到宿主模块目录（如 `entry/libs/`）。
 
-或在宿主模块的 `oh-package.json5` 中声明（`#v1.0.1` 固定到 tag，推荐显式指定版本）：
+   ```bash
+   curl -L -o entry/libs/analytics-sdk-harmony-v1.0.1.har \
+     https://github.com/SweetBabyNet/analytics-sdk-harmony/releases/download/v1.0.1/analytics-sdk-harmony-v1.0.1.har
+   ```
 
-```json5
-"dependencies": {
-  "@analytics/sdk": "https://github.com/SweetBabyNet/analytics-sdk-harmony.git#v1.0.1"
-}
-```
+2. 宿主模块 `oh-package.json5` 声明：
 
-> SDK 版本号即 git tag（如 `v1.0.1`），发版 = 打 tag 并推送。
-> 如需私有仓库，改用 ssh 形式 `git@github.com:<用户名>/analytics-sdk-harmony.git#v1.0.1`。
+   ```json5
+   "dependencies": {
+     "@analytics/sdk": "file:./libs/analytics-sdk-harmony-v1.0.1.har"
+   }
+   ```
 
-### 方式二：本地目录
+3. 模块目录执行 `ohpm install`。
+
+### 方式二：源码目录（调试用）
 
 1. 将本目录拷贝到宿主工程（如 `<project>/libs/sdk-harmony`），在宿主模块的
    `oh-package.json5` 中加本地依赖：
