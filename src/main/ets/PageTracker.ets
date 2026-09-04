@@ -20,6 +20,11 @@ export class PageTracker {
     this.sink = sink;
   }
 
+  /** 当前停留页面名，自定义事件用于自动携带 page */
+  getCurrentPage(): string | null {
+    return this.currentPage;
+  }
+
   trackPage(pageName: string, props: Props | null): void {
     const prevPage: string | null = this.currentPage;
     // 先补发上一页的离开事件

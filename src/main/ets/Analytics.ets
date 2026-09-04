@@ -143,7 +143,7 @@ export class Analytics {
         Logger.d('Analytics.track: invalid eventType "' + eventType + '", fallback to biz');
         type = EventTypes.BIZ;
       }
-      Analytics.emit(eventName, type, null, null, durationMs, props, false, -1);
+      Analytics.emit(eventName, type, Analytics.pageTracker?.getCurrentPage() ?? null, null, durationMs, props, false, -1);
     } catch (e) {
       Logger.e('Analytics.track exception');
     }
@@ -169,7 +169,8 @@ export class Analytics {
         'http_code': httpCode,
         'biz_code': bizCode
       };
-      Analytics.emit(EventNames.API_ERROR, EventTypes.ERROR, null, null, null, props, false, -1);
+      Analytics.emit(EventNames.API_ERROR, EventTypes.ERROR, Analytics.pageTracker?.getCurrentPage() ?? null,
+        null, null, props, false, -1);
     } catch (e) {
       Logger.e('Analytics.trackApiError exception');
     }
